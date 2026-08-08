@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Students collection
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+
+    // Teachers collection
+    match /teachers/{teacherId} {
+      allow read, write: if true;
+    }
+
+    // Attendance records
+    match /attendanceRecords/{recordId} {
+      allow read, write: if true;
+    }
+
+    // Timetable periods
+    match /timetablePeriods/{periodId} {
+      allow read, write: if true;
+    }
+
+    // Exam results
+    match /examResults/{resultId} {
+      allow read, write: if true;
+    }
+
+    // Note files
+    match /noteFiles/{noteId} {
+      allow read, write: if true;
+    }
+
+    // Notification logs
+    match /notificationLogs/{notificationId} {
+      allow read, write: if true;
+    }
+
+    // Subscription settings
+    match /subscriptionSettings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // Invoices
+    match /invoices/{invoiceId} {
+      allow read, write: if true;
+    }
+
+    // Student fees
+    match /studentFees/{feeId} {
+      allow read, write: if true;
+    }
+  }
+}

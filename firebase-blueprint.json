@@ -1,0 +1,233 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile in the system",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "teacher", "student"] },
+        "email": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "subjectSpecialty": { "type": "string" },
+        "classAllocated": { "type": "string" }
+      },
+      "required": ["id", "username", "name", "role", "email"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student record with academic and contact details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "gender": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "parentName": { "type": "string" },
+        "parentEmail": { "type": "string" },
+        "parentPhone": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "avatarUrl": { "type": "string" }
+      },
+      "required": ["id", "name", "rollNumber", "className", "section"]
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "School instructor records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "department": { "type": "string" },
+        "subjects": { "type": "array" },
+        "avatarUrl": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "department"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Daily attendance marking for students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["present", "absent", "late"] },
+        "remarks": { "type": "string" }
+      },
+      "required": ["id", "studentId", "studentName", "className", "section", "date", "status"]
+    },
+    "TimetablePeriod": {
+      "title": "TimetablePeriod",
+      "description": "Periodic class schedule schedule period",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "day": { "type": "string" },
+        "subject": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "startTime": { "type": "string" },
+        "endTime": { "type": "string" },
+        "room": { "type": "string" }
+      },
+      "required": ["id", "className", "section", "day", "subject", "startTime", "endTime"]
+    },
+    "ExamResult": {
+      "title": "ExamResult",
+      "description": "Academic test result of a student in a subject",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "examName": { "type": "string" },
+        "subject": { "type": "string" },
+        "marksObtained": { "type": "number" },
+        "maxMarks": { "type": "number" },
+        "grade": { "type": "string" },
+        "gp": { "type": "number" }
+      },
+      "required": ["id", "studentId", "studentName", "className", "section", "subject", "marksObtained", "maxMarks", "grade", "gp"]
+    },
+    "NoteFile": {
+      "title": "NoteFile",
+      "description": "Shared study material class lecture notes or files",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "subject": { "type": "string" },
+        "className": { "type": "string" },
+        "uploadedBy": { "type": "string" },
+        "uploaderName": { "type": "string" },
+        "uploaderRole": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "contentUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "subject", "className", "uploadedBy", "uploaderName", "uploaderRole", "fileName", "contentUrl", "createdAt"]
+    },
+    "NotificationLog": {
+      "title": "NotificationLog",
+      "description": "Automated logs for sent advisor email notifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "toEmail": { "type": "string" },
+        "recipientName": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "sentAt": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "toEmail", "recipientName", "subject", "message", "sentAt", "status"]
+    },
+    "SubscriptionSettings": {
+      "title": "SubscriptionSettings",
+      "description": "SaaS license system subscription",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "currentPlanId": { "type": "string" },
+        "institutionName": { "type": "string" },
+        "status": { "type": "string" },
+        "expiresAt": { "type": "string" },
+        "cardLast4": { "type": "string" }
+      },
+      "required": ["id", "currentPlanId", "institutionName", "status", "expiresAt", "cardLast4"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Financial invoices for licensing billing transactions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "amount": { "type": "number" },
+        "planName": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "date", "amount", "planName", "status"]
+    },
+    "StudentFee": {
+      "title": "StudentFee",
+      "description": "Fee ledger entry for students to pay tuition",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "feeName": { "type": "string" },
+        "amount": { "type": "number" },
+        "dueDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["paid", "pending", "overdue"] },
+        "paidAt": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "transactionId": { "type": "string" }
+      },
+      "required": ["id", "studentId", "feeName", "amount", "dueDate", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of all ERP users"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Collection of students detailed profiles"
+    },
+    "/teachers/{teacherId}": {
+      "schema": "Teacher",
+      "description": "Collection of teacher details files"
+    },
+    "/attendanceRecords/{recordId}": {
+      "schema": "AttendanceRecord",
+      "description": "Daily student attendance tracking records"
+    },
+    "/timetablePeriods/{periodId}": {
+      "schema": "TimetablePeriod",
+      "description": "School timetable periods"
+    },
+    "/examResults/{resultId}": {
+      "schema": "ExamResult",
+      "description": "Collection of exam score GPA cards"
+    },
+    "/noteFiles/{noteId}": {
+      "schema": "NoteFile",
+      "description": "Materials shared per classrooms"
+    },
+    "/notificationLogs/{notificationId}": {
+      "schema": "NotificationLog",
+      "description": "Collection of logged notifications dispatched"
+    },
+    "/subscriptionSettings/{settingId}": {
+      "schema": "SubscriptionSettings",
+      "description": "School subscription structure settings"
+    },
+    "/invoices/{invoiceId}": {
+      "schema": "Invoice",
+      "description": "SaaS billing system account invoices"
+    },
+    "/studentFees/{feeId}": {
+      "schema": "StudentFee",
+      "description": "Fee payment schedules and logs per students"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix: SmartEdu ERP ",
+  "description": "All-in-one smart campus management platform for schools and colleges featuring student/teacher administration, attendance tracking, responsive timetables, notes repository, exam results, and a billing dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
